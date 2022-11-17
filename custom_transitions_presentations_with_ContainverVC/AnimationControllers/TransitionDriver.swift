@@ -79,8 +79,13 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
               let fromView = transitionContext.view(forKey: .from) else {
             fatalError()
         }
-        
+        // Normally we would do this for a presentation transition, but since we are
+        // not usinga presentation, but our own custom transition implementation based on
+        // view controller children, this removal will be taken care of the usual add/remove child
+        // procedure outside this driver
+        /*
         transitionContext.containerView.addSubview(toView)
+        */
         
         // When sliding the views horizontally, in and out, figure out whether we are going left or right.
         let goingRight: Bool = transitionContext.initialFrame(for: toViewController).origin.x < transitionContext.finalFrame(for: toViewController).origin.x
@@ -122,9 +127,16 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             
             let didComplete = (position == .end)
             transitionContext.completeTransition(didComplete)
+            
+            // Normally we would do this for a successful presentationdismissal, but since we are
+            // not usinga presentation, but our own custom transition implementation based on
+            // view controller children, this removal will be taken care of the usual add/remove child
+            // procedure outside this driver
+            /*
             if didComplete {
                 fromView.removeFromSuperview()
             }
+             */
         }
         
         self.propertyAnimator = animator
