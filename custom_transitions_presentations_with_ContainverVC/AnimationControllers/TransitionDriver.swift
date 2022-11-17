@@ -193,7 +193,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
                 
                 if goingRight {
                     
-                    if latestVelocity.x < 0 {
+                    if latestVelocity.x < 0 { // Velocity precedes actual distance traveled, so it will reverse back
                         animator.isReversed = true
                         animator.startAnimation()
                         //print("V LeftToRightSwipe.1")
@@ -205,7 +205,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
                     
                 } else if !goingRight {
                     
-                    if latestVelocity.x > 0 {
+                    if latestVelocity.x > 0 { // Velocity precedes actual distance traveled, so it will reverse back
                         animator.isReversed = true
                         animator.startAnimation()
                         //print("V RightToLeftSwipe.1")
