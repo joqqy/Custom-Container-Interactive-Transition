@@ -50,9 +50,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             transitionContext.pauseInteractiveTransition()
         }
         
-        // Add action to gesture recognizer
-        guard let fromVC = transitionContext.viewController(forKey: .from) else { fatalError("fromVC not found") }
-//        fromVC.view.addGestureRecognizer(self.panGestureRecongnizer)
+        // Add action to gesture recognizer to the container view
         transitionContext.containerView.addGestureRecognizer(self.panGestureRecongnizer)
         self.panGestureRecongnizer.addTarget(self, action: #selector(handleGesture(_:)))
     }
