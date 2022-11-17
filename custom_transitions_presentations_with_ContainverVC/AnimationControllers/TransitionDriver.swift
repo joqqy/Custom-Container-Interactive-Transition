@@ -10,8 +10,10 @@ import UIKit
 class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning {
     
     private weak var timer: Timer?
-//    let velocityThreshold: CGFloat = 600.0
-//    let fractionCompleteLimit: CGFloat = 0.95
+    /*
+    let velocityThreshold: CGFloat = 600.0
+    let fractionCompleteLimit: CGFloat = 0.95
+    */
     private var latestVelocity: CGPoint = .zero
     private var goingRight: Bool = false
     private let velocitySwipeThreshold: CGFloat = 1000.0
@@ -262,6 +264,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
         }
     }
     
+    /*
     // There is no way to dynamically observe UIViewPropertyAnimator.fractionComplete
     // For now, the only solution is to use CADisplayLink or a Timer
     // See here: https://stackoverflow.com/questions/41052439/is-there-a-way-to-observe-changes-to-fractioncomplete-in-uiviewpropertyanimator
@@ -271,15 +274,16 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             guard let self = self else { return }
             
             let value = Float(self.propertyAnimator?.fractionComplete ?? 0.0)
-//            if value >= Float(self.fractionCompleteLimit) {
-//                self.propertyAnimator?.pauseAnimation()
-//                self.transitionContext.pauseInteractiveTransition()
-//                self.timer?.invalidate()
-//            }
+            if value >= Float(self.fractionCompleteLimit) {
+                self.propertyAnimator?.pauseAnimation()
+                self.transitionContext.pauseInteractiveTransition()
+                self.timer?.invalidate()
+            }
         }
       }
       else {
         self.timer?.invalidate()
       }
     }
+     */
 }
