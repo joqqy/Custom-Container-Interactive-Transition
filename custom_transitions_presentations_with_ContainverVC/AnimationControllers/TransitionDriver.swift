@@ -192,14 +192,16 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             if animator.fractionComplete > 0.5 || abs(latestVelocity.x) > velocitySwipeThreshold {
                 
                 if goingRight {
-                    if latestVelocity.x < 0 { // Velocity precedes actual distance traveled, so it will reverse back
+                    // Velocity precedes actual distance traveled, so it will reverse back
+                    if latestVelocity.x < 0 {
                         animator.isReversed = true
                         animator.startAnimation()
                         break
                     }
                     
                 } else if !goingRight {
-                    if latestVelocity.x > 0 { // Velocity precedes actual distance traveled, so it will reverse back
+                    // Velocity precedes actual distance traveled, so it will reverse back
+                    if latestVelocity.x > 0 {
                         animator.isReversed = true
                         animator.startAnimation()
                         break
