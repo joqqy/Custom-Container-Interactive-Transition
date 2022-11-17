@@ -105,14 +105,18 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
         //let timingParameters = UICubicTimingParameters(animationCurve: .easeOut)
         // see: https://devstreaming-cdn.apple.com/videos/wwdc/2016/216v55u6zpxizxkml6k/216/216_hd_advances_in_uikit_animations_and_transitions.mp4  at 20:30
         //let timingCubic = UICubicTimingParameters(controlPoint1: CGPoint(x: 0, y: 1), controlPoint2: CGPoint(x: 0.1, y: 1.0))
-        let mass: CGFloat = 0.05
+        let mass: CGFloat = 0.07
         let stiffness: CGFloat = 12.0
-        let damping: CGFloat = 1.0
+        let damping: CGFloat = 1.10
         let initialVelocity = CGVector(dx: 1, dy: 0)
-        let timingSpring = UISpringTimingParameters(mass: mass, stiffness: stiffness, damping: damping, initialVelocity: initialVelocity)
+        let timingSpring = UISpringTimingParameters(mass: mass,
+                                                    stiffness: stiffness,
+                                                    damping: damping,
+                                                    initialVelocity: initialVelocity)
         let animator = UIViewPropertyAnimator(duration: duration, timingParameters: timingSpring)
         animator.isUserInteractionEnabled = true // UIKit default: true
         animator.isInterruptible = true
+        animator.scrubsLinearly = true
         
         animator.addAnimations {
 
@@ -151,7 +155,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         // Will be ignored if we use spring dynamics
-        return 1.0
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
