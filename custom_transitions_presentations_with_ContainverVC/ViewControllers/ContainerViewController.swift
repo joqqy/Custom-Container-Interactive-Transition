@@ -123,10 +123,10 @@ class ContainerViewController: UIViewController {
         // This vc will transition away to make place for the toViewController.
         guard self.children.count > 0 else { return }
         let fromViewController = self.children[0]
-        // Make sure that fromVC is not the same as the toVC
+        // Make sure that toVC is not the same as the fromVC
         if toViewController === fromViewController { return }
         
-        // Get the vc's resp. indices (we need this info to decide in which x direction the transition will occur)
+        // Get the vc's resp. indices (we need this info to decide in which x-direction the transition will occur)
         guard
             let fromIndex = self.viewControllers.firstIndex(of: fromViewController),
             let toIndex = self.viewControllers.firstIndex(of: toViewController) else {
@@ -149,13 +149,15 @@ class ContainerViewController: UIViewController {
         // Add the toVC
         self.add(toViewController)
         
-        // At this point, children will contain 2 view controllers.
-        // 1. The one we will remove
-        // 2. The one we will transition to
+        // At this point, self.children will contain 2 view controllers.
+        // 1. The one we will remove, fromVC
+        // 2. The one we will transition to, toVC
         
-        // After the transition is complete, children will once more only contain 1 view controller, namely the one we transitioned to and is now displayed.
+        // After the transition is complete, self.children will once more only contain 1 view controller,
+        // namely the one we transitioned to(toVC) and which is now displayed.
         
-        // If the transition is not completed, then we will remove the toVC and keep the fromVC as the only child.
+        // If the transition is not completed, then we will remove the toVC we just added,
+        // and keep the fromVC as the only child.
         
         transitionContext.completionBlock = { [weak self] (didComplete: Bool) -> Void in
             guard let self = self else { return }
@@ -167,7 +169,7 @@ class ContainerViewController: UIViewController {
             } else {
                 // Animator did not complete, so remove the vc we just added.
                 toViewController.remove()
-                // Revert back to the old selected vc
+                // Revert back to the old vc as the selected one
                 self.selectedViewController = fromViewController
             }
             
