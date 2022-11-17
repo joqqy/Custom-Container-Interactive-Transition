@@ -41,9 +41,6 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
         // Let's init all our children vcs upfront
         self.viewControllers = [VC1(title: "Child VC 1", color: .green),
                                 VC1(title: "Child VC 2", color: .cyan),
@@ -61,15 +58,7 @@ class ContainerViewController: UIViewController {
         self.fireTransitionGesture = UIPanGestureRecognizer(target: self, action: #selector(gestureInitTransition(_:)))
         self.view.addGestureRecognizer(self.fireTransitionGesture!)
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-        self.view.topAnchor.constraint(equalTo: self.view.superview!.topAnchor).isActive = true
-        self.view.bottomAnchor.constraint(equalTo: self.view.superview!.bottomAnchor).isActive = true
-        self.view.leadingAnchor.constraint(equalTo: self.view.superview!.leadingAnchor).isActive = true
-        self.view.trailingAnchor.constraint(equalTo: self.view.superview!.trailingAnchor).isActive = true
-    }
-    
+
     func selectVCandTransition(_ selectedVC: UIViewController) -> Void {
         self.selectedViewController = selectedVC
         self.transitionToChildVC(toViewController: selectedVC)
