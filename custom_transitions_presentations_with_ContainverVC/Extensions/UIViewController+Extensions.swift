@@ -9,6 +9,7 @@ import UIKit
 
 extension UIViewController {
     
+    /// Call this on parent to add a child view controller
     func add(_ child: UIViewController) -> Void {
         
         self.addChild(child)
@@ -20,6 +21,7 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
     
+    /// Call this on child view controller to remove itself from its parent
     func remove() {
         guard parent != nil else { return }
         
