@@ -44,6 +44,7 @@ class ContainerViewController: UIViewController {
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         
+        // Let's init all our children vcs upfront
         self.viewControllers = [VC1(title: "Child VC 1", color: .green),
                                 VC1(title: "Child VC 2", color: .cyan),
                                 VC1(title: "Child VC 3", color: .magenta),
