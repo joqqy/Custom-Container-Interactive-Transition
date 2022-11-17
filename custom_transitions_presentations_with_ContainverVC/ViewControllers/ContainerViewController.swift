@@ -50,8 +50,11 @@ class ContainerViewController: UIViewController {
                                 VC1(title: "Child VC 3", color: .magenta),
                                 VC1(title: "Child VC 4", color: .orange),]
         // Set the initial the starting child
-        let startingIndex = 1
-        self.selectedViewController = self.viewControllers[startingIndex < self.viewControllers.count ? startingIndex : 0]
+        let startingIndex: (Int) -> Int = { [weak self] (val) -> Int in
+            guard let self = self else { return 0 }
+            return val < self.viewControllers.count ? val : 0
+        }
+        self.selectedViewController = self.viewControllers[startingIndex(1)]
         // Add the initial child to the container hierarchy of children
         self.add(self.selectedViewController!)
 
