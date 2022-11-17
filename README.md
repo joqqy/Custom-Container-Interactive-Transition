@@ -6,7 +6,7 @@ Note that we have implemented interactive transitions as well, using UIViewPrope
 
 Basically, we have a main view controller. This VC has children. How can we use custom transitions between them?
 
-From the [original article:](https://www.objc.io/issues/12-animations/custom-container-view-controller-transitions/):
+From the [original article:](https://www.objc.io/issues/12-animations/custom-container-view-controller-transitions/)
 
 "*The components of the iOS 7 custom view controller transition API are mostly protocols which make them extremely flexible to work with, because you can very easily plug them into your existing class hierarchy. The five main components are*:
 
