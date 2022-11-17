@@ -31,8 +31,8 @@ import UIKit
 
 class ContainerViewController: UIViewController {
     
-    var transitionDriver: TransitionDriver?
-    var fireTransitionGesture: UIPanGestureRecognizer?
+    private var transitionDriver: TransitionDriver?
+    private var fireTransitionGesture: UIPanGestureRecognizer?
     
     var viewControllers: Array<UIViewController> = []
     var selectedViewController: UIViewController?
