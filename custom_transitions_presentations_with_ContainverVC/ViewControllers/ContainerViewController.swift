@@ -122,9 +122,10 @@ class ContainerViewController: UIViewController {
         // This vc will transition away to make place for the toViewController.
         guard self.children.count > 0 else { return }
         let fromViewController = self.children[0]
-        if toViewController === fromViewController {
-            return
-        }
+        // Make sure that fromVC is not the same as the toVC
+        if toViewController === fromViewController { return }
+        
+        // Get the vc's resp. indices (we need this info to decide in which x direction the transition will occur)
         guard
             let fromIndex = self.viewControllers.firstIndex(of: fromViewController),
             let toIndex = self.viewControllers.firstIndex(of: toViewController) else {
