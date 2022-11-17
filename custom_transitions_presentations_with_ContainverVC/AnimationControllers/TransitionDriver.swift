@@ -187,8 +187,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             //print("fractionComplete: \(animator.fractionComplete)")
             
         case .ended, .cancelled:
-            
-            // ///////////////////////////
+ 
             transitionContext.pauseInteractiveTransition()
             if animator.fractionComplete > 0.5 || abs(latestVelocity.x) > velocitySwipeThreshold {
                 
@@ -223,7 +222,6 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             }
             transitionContext.finishInteractiveTransition()
             break
-            // ///////////////////////////
 
             /*
             if latestVelocity.x > velocityThreshold /*&& fractionComplete <= fractionCompleteLimit*/ {
