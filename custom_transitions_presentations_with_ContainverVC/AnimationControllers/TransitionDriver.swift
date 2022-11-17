@@ -74,9 +74,13 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
          */
         
         guard let toViewController = transitionContext.viewController(forKey: .to),
-              let fromViewController = transitionContext.viewController(forKey: .from) else {
+              let fromViewController = transitionContext.viewController(forKey: .from),
+              let toView = transitionContext.view(forKey: .to),
+              let fromView = transitionContext.view(forKey: .from) else {
             fatalError()
         }
+        
+        transitionContext.containerView.addSubview(toView)
         
         // When sliding the views horizontally, in and out, figure out whether we are going left or right.
         let goingRight: Bool = transitionContext.initialFrame(for: toViewController).origin.x < transitionContext.finalFrame(for: toViewController).origin.x
@@ -104,9 +108,8 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
         let animator = UIViewPropertyAnimator(duration: duration, timingParameters: timingSpring)
         animator.isUserInteractionEnabled = true // UIKit default: true
         
-        animator.addAnimations { [weak self] in
-            guard let self = self else { return }
-            
+        animator.addAnimations {
+
             fromViewController.view.transform = travel
             //fromViewController.view.alpha = 0
             
@@ -114,11 +117,12 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
             //toViewController.view.alpha = 1
         }
         
-        animator.addCompletion { [weak self] (position) in
-            guard let self = self else { return }
-            
+        animator.addCompletion { (position) in
             let didComplete = (position == .end)
             transitionContext.completeTransition(didComplete)
+            if didComplete {
+                fromView.removeFromSuperview()
+            }
         }
         
         self.propertyAnimator = animator
