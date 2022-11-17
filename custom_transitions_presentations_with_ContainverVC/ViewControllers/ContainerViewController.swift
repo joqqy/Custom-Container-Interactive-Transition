@@ -119,28 +119,30 @@ class ContainerViewController: UIViewController {
         // For this particular implementation, at this stage, when we will do the transition,
         // there should only be one child present, the fromViewController. So we try to fetch it.
         // This vc will transition away to make place for the toViewController.
-        let fromViewController = self.children.count > 0 ? self.children[0] : nil
-        
-        if toViewController === fromViewController || fromViewController == nil {
+        guard self.children.count > 0 else { return }
+        let fromViewController = self.children[0]
+        if toViewController === fromViewController {
+            return
+        }
+        guard
+            let fromIndex = self.viewControllers.firstIndex(of: fromViewController),
+            let toIndex = self.viewControllers.firstIndex(of: toViewController) else {
             return
         }
 
-        // MARK: - Create our Animator object driver
-        guard let transitionDriver = self.animationControllerForTransition(from: fromViewController!,
+        // MARK: - Get a fresh Animator object driver
+        guard let transitionDriver = self.animationControllerForTransition(from: fromViewController,
                                                                            to: toViewController) else {
             return
         }
-        // MARK: - Create our transition context object
+        // MARK: - Create the transition context object
         // Because of the nature of our view controller, with horizontally arranged buttons, we instantiate our private transition context with information about whether this is a left-to-right or right-to-left transition. The animator can use this information if it wants.
-        let fromIndex = self.viewControllers.firstIndex(of: fromViewController!)!
-        let toIndex = self.viewControllers.firstIndex(of: toViewController)!
-        // Note, temprarily we had to change from > to < for goingRight: Bool
-        let transitionContext: PrivateTransitionContext = PrivateTransitionContext(fromVC: fromViewController!,
+        let transitionContext: PrivateTransitionContext = PrivateTransitionContext(fromVC: fromViewController,
                                                                                    toVC: toViewController,
-                                                                                   goingRight: toIndex /*>*/< fromIndex)
+                                                                                   goingRight: toIndex < fromIndex)
 
         // Prepare to remove the fromVC
-        fromViewController?.willMove(toParent: nil)
+        fromViewController.willMove(toParent: nil)
         // Add the toVC
         self.add(toViewController)
         
@@ -158,7 +160,7 @@ class ContainerViewController: UIViewController {
             // Cleanup
             if didComplete {
                 // Animator completed, so it is now safe to remove the vc from the hierarchy
-                fromViewController?.remove()
+                fromViewController.remove()
             } else {
                 // Animator did not complete, so remove the vc we just added.
                 toViewController.remove()
