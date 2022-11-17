@@ -74,9 +74,9 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
          */
         
         guard let toViewController = transitionContext.viewController(forKey: .to),
-              let fromViewController = transitionContext.viewController(forKey: .from),
+              let fromViewController = transitionContext.viewController(forKey: .from)/*,
               let toView = transitionContext.view(forKey: .to),
-              let fromView = transitionContext.view(forKey: .from) else {
+              let fromView = transitionContext.view(forKey: .from)*/ else {
             fatalError()
         }
         // Normally we would do this for a presentation transition, but since we are
