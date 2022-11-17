@@ -14,7 +14,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
 //    let fractionCompleteLimit: CGFloat = 0.95
     private var latestVelocity: CGPoint = .zero
     private var goingRight: Bool = false
-    private let velocitySwipeThreshold: CGFloat = 2000.0
+    private let velocitySwipeThreshold: CGFloat = 1000.0
     
     var transitionContext: UIViewControllerContextTransitioning!
     private var propertyAnimator: UIViewPropertyAnimator?
