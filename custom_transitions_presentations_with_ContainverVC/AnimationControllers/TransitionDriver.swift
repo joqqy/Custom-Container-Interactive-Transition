@@ -107,6 +107,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
         let timingSpring = UISpringTimingParameters(mass: mass, stiffness: stiffness, damping: damping, initialVelocity: initialVelocity)
         let animator = UIViewPropertyAnimator(duration: duration, timingParameters: timingSpring)
         animator.isUserInteractionEnabled = true // UIKit default: true
+        animator.isInterruptible = true
         
         animator.addAnimations {
 
@@ -118,6 +119,7 @@ class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewC
         }
         
         animator.addCompletion { (position) in
+            
             let didComplete = (position == .end)
             transitionContext.completeTransition(didComplete)
             if didComplete {
