@@ -12,7 +12,7 @@ extension UIViewController {
     func add(_ child: UIViewController) -> Void {
         
         self.addChild(child)
-        view.addSubview(child.view)
+        self.view.addSubview(child.view)
         
         // Add constraints here
         // ...
@@ -28,7 +28,7 @@ extension UIViewController {
         // Deactivate any constraints
         // ...
         
-        view.removeFromSuperview()
-        removeFromParent()
+        self.view.removeFromSuperview()
+        self.removeFromParent()
     }
 }
