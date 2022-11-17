@@ -9,29 +9,23 @@ import UIKit
 
 class TransitionDriver: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning {
     
-    private weak var timer: Timer?
+    var transitionContext: UIViewControllerContextTransitioning!
     /*
+    private weak var timer: Timer?
     let velocityThreshold: CGFloat = 600.0
     let fractionCompleteLimit: CGFloat = 0.95
     */
     private var latestVelocity: CGPoint = .zero
     private var goingRight: Bool = false
     private let velocitySwipeThreshold: CGFloat = 1000.0
-    
-    var transitionContext: UIViewControllerContextTransitioning!
     private var propertyAnimator: UIViewPropertyAnimator?
     private var panGestureRecongnizer: UIPanGestureRecognizer!
     private var progressAtTouchBegin: CGFloat = 0.0
-    
-    private let originFrame: CGRect
-    
     private let kCChildViewPadding: CGFloat = 16
-    
-    init(originFrame: CGRect, panGesture: UIPanGestureRecognizer) {
 
-        self.originFrame = originFrame
+    init(panGesture: UIPanGestureRecognizer) {
+
         self.panGestureRecongnizer = panGesture
-        
         super.init()
     }
 

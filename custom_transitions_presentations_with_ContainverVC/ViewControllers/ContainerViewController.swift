@@ -192,7 +192,7 @@ extension ContainerViewController: ContainerVCTransitionDelegate, UIViewControll
     
     func animationControllerForTransition(from: UIViewController, to: UIViewController) -> UIViewControllerAnimatedTransitioning? {
  
-        self.transitionDriver = TransitionDriver(originFrame: self.view.frame, panGesture: self.fireTransitionGesture!)
+        self.transitionDriver = TransitionDriver(panGesture: self.fireTransitionGesture!)
         return transitionDriver
     }
 }
