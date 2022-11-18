@@ -24,6 +24,13 @@ class VC1: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        
+        lbl = UILabel()
+        self.view.addSubview(lbl)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,17 +38,19 @@ class VC1: UIViewController {
         view.backgroundColor = self.backgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        lbl = UILabel()
         lbl.font = UIFont(name: "Thonburi-Bold", size: 25)
         lbl.text = self.title
         lbl.textColor = .white
         lbl.sizeToFit()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(lbl)
     }
     
     override func viewDidLayoutSubviews() {
-
+        self.setupConstraints()
+    }
+    
+    private func setupConstraints() -> Void {
+        
         view.topAnchor.constraint(equalTo: view.superview!.topAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: view.superview!.bottomAnchor).isActive = true
         view.leadingAnchor.constraint(equalTo: view.superview!.leadingAnchor).isActive = true
