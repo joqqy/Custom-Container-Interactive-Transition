@@ -1,4 +1,4 @@
-# Custom Container View Controller Transitions
+# Custom Container View Controller, Custom Interactive ChildVC Transitions
 
 Example on how to implement custom animated transitions between child view controllers in a custom container.
 Note that we have implemented interactive transitions as well, using UIViewPropertyAnimator and by conforming to
