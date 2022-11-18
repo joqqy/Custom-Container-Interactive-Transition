@@ -67,8 +67,9 @@ class ContainerViewController: UIViewController {
     @objc func gestureInitTransition(_ gesture: UIPanGestureRecognizer) {
         
         // If there is more than 1 child, then a transition is currently in progress.
-        // So we have to wait until the transition is finished.
-        // At the end of the transition there should be only 1 child in the children remaining.
+        // So we have to wait until the interactive transition is completed.
+        // At the end of the transition there should be only 1 child in the children remaining,
+        // at which point it is safe to initiate a new transition session.
         guard children.count == 1 else { return }
 
         // For each transition start, the transitionDriver will be nil,
