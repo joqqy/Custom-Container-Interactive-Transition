@@ -71,6 +71,8 @@ class ContainerViewController: UIViewController {
         // At the end of the transition there should be only 1 child in the children remaining.
         guard children.count == 1 else { return }
 
+        // For each transition start, the transitionDriver will be nil,
+        // and so isInteractive will be set to false, meaning the gesture will be allowed to proceed
         let isInteractive: Bool
         if let tdriver = transitionDriver {
             isInteractive = tdriver.transitionContext.isInteractive
