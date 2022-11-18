@@ -90,11 +90,11 @@ class ContainerViewController: UIViewController {
             let leftToRight: Bool = gesture.velocity(in: gesture.view).x > 0
 
             var nextIDX: Int?
-            // We go forward, meaning finger was swiped right to left
+            // We go forward, meaning finger was swiped right to left, |<-|
             if !leftToRight && currentVCIndex != self.viewControllers.count-1 {
                 nextIDX = currentVCIndex + 1
 
-            // We go backward, meaning finger was swiped left to right
+            // We go backward, meaning finger was swiped left to right, |->|
             } else if leftToRight && currentVCIndex > 0 {
                 nextIDX = currentVCIndex - 1
             }
