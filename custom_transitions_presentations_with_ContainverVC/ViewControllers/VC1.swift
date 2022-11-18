@@ -25,8 +25,8 @@ class VC1: UIViewController {
     }
     
     override func loadView() {
-        super.loadView()
-        
+        //super.loadView()
+        self.view = .init(frame: .zero)
         lbl = UILabel()
         self.view.addSubview(lbl)
     }
