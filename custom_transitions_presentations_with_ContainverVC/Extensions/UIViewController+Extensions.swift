@@ -10,6 +10,7 @@ import UIKit
 extension UIViewController {
     
     /// Call this on parent to add a child view controller
+    /// The constraints size the child view to match its superview(parent view)
     func add(_ child: UIViewController) -> Void {
         
         self.addChild(child)
