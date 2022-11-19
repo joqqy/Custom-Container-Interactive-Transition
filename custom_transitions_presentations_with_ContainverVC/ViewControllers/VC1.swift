@@ -41,7 +41,6 @@ class VC1: UIViewController {
         lbl.font = UIFont(name: "Thonburi-Bold", size: 25)
         lbl.text = self.title
         lbl.textColor = .white
-        lbl.sizeToFit()
         lbl.translatesAutoresizingMaskIntoConstraints = false
     }
     
