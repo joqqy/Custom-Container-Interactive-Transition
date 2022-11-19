@@ -36,11 +36,11 @@ class ContainerViewController: UIViewController {
     
     var viewControllers: Array<UIViewController> = []
     var selectedViewController: UIViewController?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+    
         // Let's init all our children vcs upfront
         self.viewControllers = [VC1(title: "Child VC 1", color: .green),
                                 VC1(title: "Child VC 2", color: .cyan),
