@@ -45,16 +45,11 @@ class VC1: UIViewController {
         lbl.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewWillAppear(_ animated: Bool) {
         self.setupConstraints()
     }
     
     private func setupConstraints() -> Void {
-        
-        view.topAnchor.constraint(equalTo: view.superview!.topAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: view.superview!.bottomAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: view.superview!.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: view.superview!.trailingAnchor).isActive = true
 
         lbl.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         lbl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true

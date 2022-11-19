@@ -17,6 +17,10 @@ extension UIViewController {
         
         // Add constraints here
         // ...
+        child.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        child.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        child.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        child.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
         child.didMove(toParent: self)
     }
